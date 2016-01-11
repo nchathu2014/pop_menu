@@ -1,0 +1,22 @@
+{
+  "name": "pop_menu",
+  "homepage": "index.html",
+  "description": "This is a sample polymer menu with popup functionality",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "Polymer"
+  ],
+  "authors": [
+    "T.D.N.Chathuranga"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
