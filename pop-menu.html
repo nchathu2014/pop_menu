@@ -11,7 +11,9 @@
             }
 
             .cus-btn{
-                text-align: left;border-radius: 0;
+                text-align: left;
+                border-radius: 0;
+                width: 100%;
             }
 
 
@@ -22,28 +24,19 @@
         </style>
 
 
-       <div class="menuPortion">
+        <content></content>
+
+      <!-- <div class="menuPortion">
            <div><b>Menu Title</b></div>
            <button type="button" class="btn btn-default btn-sm cus-btn">
                <span class="glyphicon glyphicon-plus"></span><span style="padding-left: 50px;">Item-1</span></button>
 
-       </div>
+       </div>-->
 
     </template>
     <script>
         Polymer({
             is:'pop-menu',
-            properties:{
-              width:{
-                  type:String,
-                  value:function(){
-                      return this.width+"%";
-                  }
-              }
-            },
-            setWidth:function(){
-                return this.width+"%";
-            },
             ready:function(){
                 console.log(this.localName+" ready..."+this.width);
             },
