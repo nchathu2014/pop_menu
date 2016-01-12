@@ -1,0 +1,70 @@
+<!--<script rel="stylesheet" href="bower_components/jquery/dist/jquery.min.js"></script>-->
+<link rel="import" href="../polymer/polymer.html">
+<!--<script rel="stylesheet" href="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">-->
+
+<dom-module id="menu-item">
+    <template>
+        <style>
+            :host{
+                display: block;
+            }
+            .cus-btn{
+                text-align: left;
+                border-radius: 0;
+                width: 25%;
+            }
+            .glyphicon{
+                color: green;
+            }
+        </style>
+
+        <div>
+            <button type="button" class="btn btn-default btn-sm cus-btn" on-tap="openMenuWindow">
+                <span class="glyphicon glyphicon-plus"></span><span style="padding-left: 50px;">{{name}}</span>
+            </button>
+
+            <template is="dom-if" if="{{hidden}}">
+               <!-- dynamically change the content-->
+
+                <div style="width: 400px;height: 500px;background-color: #999999;position: absolute;top:50px;left: 30px;padding: 10px;">
+                    {{name}}
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="5" id="comment" style="resize: none;"></textarea>
+                    </div>
+                    <button on-tap="windowClose">CLOSE</button>
+                </div>
+            </template>
+
+        </div>
+
+
+    </template>
+    <script>
+        Polymer({
+            is:'menu-item',
+            properties:{
+                name:String,
+                hidden:{
+                    type:Boolean,
+                    value:false
+                }
+            },
+            openMenuWindow:function(){
+                console.log("openMenuWindow");
+                this.hidden=true;
+            },
+            windowClose:function(){
+                console.log("windowClose");
+                this.hidden=false;
+            },
+            ready:function(){
+                console.log(this.localName+" ready..."+this.width);
+            },
+            attached:function(){
+                console.log(this.localName+" attached..."+this.width);
+            }
+        });
+    </script>
+</dom-module>
