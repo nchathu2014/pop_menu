@@ -1,0 +1,55 @@
+<script rel="stylesheet" href="bower_components/jquery/dist/jquery.min.js"></script>
+<link rel="import" href="../polymer/polymer.html">
+<script rel="stylesheet" href="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+<dom-module id="pop-menu">
+    <template>
+        <style>
+            :host{
+                display: block;
+            }
+
+            .cus-btn{
+                text-align: left;border-radius: 0;
+            }
+
+
+            .glyphicon{
+                   color: green;
+            }
+
+        </style>
+
+
+       <div class="menuPortion">
+           <div><b>Menu Title</b></div>
+           <button type="button" class="btn btn-default btn-sm cus-btn">
+               <span class="glyphicon glyphicon-plus"></span><span style="padding-left: 50px;">Item-1</span></button>
+
+       </div>
+
+    </template>
+    <script>
+        Polymer({
+            is:'pop-menu',
+            properties:{
+              width:{
+                  type:String,
+                  value:function(){
+                      return this.width+"%";
+                  }
+              }
+            },
+            setWidth:function(){
+                return this.width+"%";
+            },
+            ready:function(){
+                console.log(this.localName+" ready..."+this.width);
+            },
+            attached:function(){
+                console.log(this.localName+" attached..."+this.width);
+            }
+        });
+    </script>
+</dom-module>
