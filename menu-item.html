@@ -17,6 +17,10 @@
             .glyphicon{
                 color: green;
             }
+
+            .tmpContainer{
+                width: 400px;height: 500px;background-color: #999999;position: absolute;top:50px;left: 30px;padding: 10px;
+            }
         </style>
 
         <div>
@@ -27,12 +31,15 @@
             <template is="dom-if" if="{{hidden}}">
                <!-- dynamically change the content-->
 
-                <div style="width: 400px;height: 500px;background-color: #999999;position: absolute;top:50px;left: 30px;padding: 10px;">
+                <div id="container" class="tmpContainer">
+                    <content></content>
+                  <!--  <content></content>
                     {{name}}
+
                     <div class="form-group">
                         <label for="comment">Comment:</label>
                         <textarea class="form-control" rows="5" id="comment" style="resize: none;"></textarea>
-                    </div>
+                    </div>-->
                     <button on-tap="windowClose">CLOSE</button>
                 </div>
             </template>
@@ -46,6 +53,7 @@
             is:'menu-item',
             properties:{
                 name:String,
+                id:String,//map to element name -> id=element name
                 hidden:{
                     type:Boolean,
                     value:false
@@ -54,6 +62,11 @@
             openMenuWindow:function(){
                 console.log("openMenuWindow");
                 this.hidden=true;
+
+                console.log(this.id);
+                this.loadTemplate('partials/'+this.id+'.html',this.id);
+
+
             },
             windowClose:function(){
                 console.log("windowClose");
@@ -61,6 +74,16 @@
             },
             ready:function(){
                 console.log(this.localName+" ready..."+this.width);
+            },
+            loadTemplate:function(path,element){
+                this.importHref(path,function(e){
+                    var newElement = document.createElement(element);
+                    Polymer.dom(this).appendChild(newElement);
+
+
+                },function(err){
+                    console.log(err);
+                });
             },
             attached:function(){
                 console.log(this.localName+" attached..."+this.width);

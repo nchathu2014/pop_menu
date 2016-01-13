@@ -1,0 +1,36 @@
+<link rel="import" href="../../polymer/polymer.html"/>
+<!--<script src="../../jquery/dist/jquery.min.js"></script>
+<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../bootstrap/dist/css/bootstrap.min.css">-->
+
+
+<dom-module id="my-element">
+    <template>
+        <style>
+            :host{
+                display: block;
+            }
+        </style>
+
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment" style="resize: none;"></textarea>
+        </div>
+
+    </template>
+    <!--imperative part of the polymer component-->
+    <script>
+        (function(){
+            'use strict'
+            Polymer({
+                is:"my-element"
+            });
+        }());
+    </script>
+</dom-module>
+
+
+
+
+
+
