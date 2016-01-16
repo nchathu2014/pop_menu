@@ -1,0 +1,35 @@
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="dynamic-view-element">
+    <template>
+        <style>
+            :host{
+                display: block;
+                padding: 10px;
+                background-color: #666666;
+
+
+            }
+        </style>
+
+
+        <div class="dynamicElementWrapper">
+             <span>I am dynamic area</span>
+            <content></content>
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is:'dynamic-view-element',
+            properties:{
+
+                /**
+                 * The align controls horizontal positioning left,middle,right. default = center
+                 */
+
+
+            }
+
+        });
+    </script>
+</dom-module>

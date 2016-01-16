@@ -1,47 +1,38 @@
-<script rel="stylesheet" href="bower_components/jquery/dist/jquery.min.js"></script>
 <link rel="import" href="../polymer/polymer.html">
-<script rel="stylesheet" href="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-
 <dom-module id="pop-menu">
     <template>
         <style>
-            :host{
+            :host .mainWrapper{
                 display: block;
+                @apply(--my-popmenu-theme);
             }
-
-            .cus-btn{
-                text-align: left;
-                border-radius: 0;
-                width: 100%;
-            }
-
-
-            .glyphicon{
-                   color: green;
-            }
-
         </style>
+        <div class="mainWrapper" style$="width:{{width}};background-color:{{background}};padding:{{margin}}">
+            <content></content>
+        </div>
 
 
-        <content></content>
-
-      <!-- <div class="menuPortion">
-           <div><b>Menu Title</b></div>
-           <button type="button" class="btn btn-default btn-sm cus-btn">
-               <span class="glyphicon glyphicon-plus"></span><span style="padding-left: 50px;">Item-1</span></button>
-
-       </div>-->
 
     </template>
     <script>
         Polymer({
             is:'pop-menu',
-            ready:function(){
-                console.log(this.localName+" ready..."+this.width);
-            },
-            attached:function(){
-                console.log(this.localName+" attached..."+this.width);
+            properties:{
+                /**
+                 * The width controls the menu length(px,%) horizontally.
+                 */
+                width:String,
+                /**
+                 * The background controls the menu background color.
+                 */
+                background:String,
+                /**
+                 * The margin controls the menu margins(px,%) as top,right,bottom,left respectively
+                 */
+                margin:{
+                    type:String,
+                    value:"0 20px 20px 0" //default margin settings
+                }
             }
         });
     </script>

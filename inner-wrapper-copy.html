@@ -1,0 +1,106 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="pop-menu.html">
+<link rel="import" href="pop-menu-label.html">
+<link rel="import" href="menu-item.html">
+<link rel="import" href="view-element.html">
+<link rel="import" href="title-element.html">
+
+
+<dom-module id="inner-wrapper">
+    <template>
+        <style>
+            :host{
+                display: block;
+                @apply(--inner-wrapper-theme);
+            }
+            .flex-4{
+                z-index: 99999;
+                width: 100%;
+            }
+        </style>
+
+
+        <div class="horizontal layout" style="height:100%">
+            <div class="flex-1">
+                <pop-menu>
+
+                    <menu-label name="Title 1"></menu-label>
+
+                    <menu-item name="Item 1" id="a-element"></menu-item>
+                    <menu-item name="Item 2" id="b-element"></menu-item>
+                    <menu-item name="Item 3"></menu-item>
+                    <menu-item name="Item 4"></menu-item>
+
+                    <br>
+                    <menu-label name="Title 2" align="center"></menu-label>
+
+                    <menu-item name="Item 1"></menu-item>
+                    <menu-item name="Item 2"></menu-item>
+
+
+                    <br>
+                    <menu-label name="Title 3" align="center"></menu-label>
+
+                    <menu-item name="Item 1"></menu-item>
+                    <menu-item name="Item 2"></menu-item>
+
+                </pop-menu>
+            </div>
+            <div class="flex-4">
+                <view-element></view-element>
+            </div>
+        </div>
+
+        <!--<div class="container-fluid">
+
+            <div class="row">
+                <div class="pull-left" style="width: 25%;">
+                    <pop-menu>
+
+                        <menu-label name="Title 1"></menu-label>
+
+                        <menu-item name="Item 1" id="a-element"></menu-item>
+                        <menu-item name="Item 2" id="b-element"></menu-item>
+                        <menu-item name="Item 3"></menu-item>
+                        <menu-item name="Item 4"></menu-item>
+
+                        <br>
+                        <menu-label name="Title 2" align="center"></menu-label>
+
+                        <menu-item name="Item 1"></menu-item>
+                        <menu-item name="Item 2"></menu-item>
+
+
+                        <br>
+                        <menu-label name="Title 3" align="center"></menu-label>
+
+                        <menu-item name="Item 1"></menu-item>
+                        <menu-item name="Item 2"></menu-item>
+
+                    </pop-menu>
+                </div>
+
+                <div class="pull-right" style="width: 75%;">
+                    <view-element></view-element>
+                </div>
+
+            </div>
+
+        </div>-->
+
+    </template>
+    <script>
+        Polymer({
+            is:'inner-wrapper',
+            properties:{
+
+                /**
+                 * The align controls horizontal positioning left,middle,right. default = center
+                 */
+
+
+            }
+
+        });
+    </script>
+</dom-module>

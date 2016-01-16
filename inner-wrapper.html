@@ -1,0 +1,183 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="pop-menu.html">
+<link rel="import" href="pop-menu-label.html">
+<link rel="import" href="menu-item.html">
+<link rel="import" href="view-element.html">
+<link rel="import" href="title-element.html">
+<link rel="import" href="dynamic-view-element.html">
+
+<dom-module id="inner-wrapper">
+    <template>
+        <style>
+            :host{
+                display: block;
+                @apply(--inner-wrapper-theme);
+            }
+
+        </style>
+
+        <script>
+
+            document.querySelector('inner-wrapper').addEventListener('width-changed', function (e) {
+
+                this.width=e.detail.width;
+
+               console.log("Event capture : "+ this.width);
+            })
+
+            document.querySelector('inner-wrapper').addEventListener('width-reset', function (e) {
+
+                this.width=e.detail.width;
+               // this.toggleClick=e.detail.toggleClick;
+
+                console.log("Event capture : "+ this.width+" -toggle : "+ this.toggleClick);
+            })
+        </script>
+
+      <div class="container-fluid">
+
+          <div class="row">
+
+              <div class="pull-left" style="width: 25%;">
+                  <menu-label name="Build a Quiz/Poll" size="20" transform="capitalize" bold="normal"></menu-label>
+              </div>
+              <div class="pull-left" style="width: 75%;">
+
+                  <button class="btn btn-primary pull-right">Publish</button><span>&nbsp;&nbsp;&nbsp;</span>
+                  <button class="btn btn-primary pull-right">Save and Exit</button>
+              </div>
+
+          </div>
+
+          <div class="row">
+
+              <div class="pull-left" style="width: 25%;">
+                  <pop-menu>
+
+                      <menu-label name="Title 1"></menu-label>
+
+                      <menu-item name="Item 1" id="a-element"></menu-item>
+                      <menu-item name="Item 2" id="b-element"></menu-item>
+                      <menu-item name="Item 3"></menu-item>
+                      <menu-item name="Item 4"></menu-item>
+
+                      <br>
+                      <menu-label name="Title 2"></menu-label>
+
+                      <menu-item name="Item 1"></menu-item>
+                      <menu-item name="Item 2"></menu-item>
+
+
+                      <br>
+                      <menu-label name="Title 3"></menu-label>
+
+                      <menu-item name="Item 1"></menu-item>
+                      <menu-item name="Item 2"></menu-item>
+
+                  </pop-menu>
+              </div>
+              <div class="pull-right my-div"  style$="position: {{position}};right: {{right}};width: {{width}}">
+
+                  <view-element title="Student View"></view-element>
+              </div>
+
+          </div>
+      </div>
+
+
+      <!--  <div class="horizontal layout" style="height:100%">
+            <div class="flex-1">
+                <pop-menu>
+
+                    <menu-label name="Title 1"></menu-label>
+
+                    <menu-item name="Item 1" id="a-element"></menu-item>
+                    <menu-item name="Item 2" id="b-element"></menu-item>
+                    <menu-item name="Item 3"></menu-item>
+                    <menu-item name="Item 4"></menu-item>
+
+                    <br>
+                    <menu-label name="Title 2" align="center"></menu-label>
+
+                    <menu-item name="Item 1"></menu-item>
+                    <menu-item name="Item 2"></menu-item>
+
+
+                    <br>
+                    <menu-label name="Title 3" align="center"></menu-label>
+
+                    <menu-item name="Item 1"></menu-item>
+                    <menu-item name="Item 2"></menu-item>
+
+                </pop-menu>
+            </div>
+            <div class="flex-4">
+                <view-element></view-element>
+            </div>
+        </div>-->
+
+        <!--<div class="container-fluid">
+
+            <div class="row">
+                <div class="pull-left" style="width: 25%;">
+                    <pop-menu>
+
+                        <menu-label name="Title 1"></menu-label>
+
+                        <menu-item name="Item 1" id="a-element"></menu-item>
+                        <menu-item name="Item 2" id="b-element"></menu-item>
+                        <menu-item name="Item 3"></menu-item>
+                        <menu-item name="Item 4"></menu-item>
+
+                        <br>
+                        <menu-label name="Title 2" align="center"></menu-label>
+
+                        <menu-item name="Item 1"></menu-item>
+                        <menu-item name="Item 2"></menu-item>
+
+
+                        <br>
+                        <menu-label name="Title 3" align="center"></menu-label>
+
+                        <menu-item name="Item 1"></menu-item>
+                        <menu-item name="Item 2"></menu-item>
+
+                    </pop-menu>
+                </div>
+
+                <div class="pull-right" style="width: 75%;">
+                    <view-element></view-element>
+                </div>
+
+            </div>
+
+        </div>-->
+
+    </template>
+    <script>
+        Polymer({
+            is:'inner-wrapper',
+            properties:{
+
+                position:{
+                    type:String,
+                    value:"absolute"
+                },
+                right:{
+                    type:String,
+                    value:"0"
+                },
+                width:{
+                    type:String,
+                    value:"75%"
+                }
+                /**
+                 * The align controls horizontal positioning left,middle,right. default = center
+                 */
+
+
+            }
+
+        });
+    </script>
+</dom-module>

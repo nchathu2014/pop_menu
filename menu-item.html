@@ -1,18 +1,17 @@
-<!--<script rel="stylesheet" href="bower_components/jquery/dist/jquery.min.js"></script>-->
 <link rel="import" href="../polymer/polymer.html">
-<!--<script rel="stylesheet" href="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">-->
-
 <dom-module id="menu-item">
     <template>
+
         <style>
             :host{
                 display: block;
+                @apply(--menu-item-background);
             }
             .cus-btn{
                 text-align: left;
                 border-radius: 0;
-                width: 25%;
+                width: 100%;
+                padding: 8px;
             }
             .glyphicon{
                 color: green;
@@ -20,31 +19,44 @@
 
             .tmpContainer{
                /* Refactor this EBP-CSS*/
-                width: 400px;height: 500px;background-color: #999999;position: absolute;top:50px;left: 30px;padding: 10px;
+                width:300px;height: 580px;background-color: #999999;position: absolute;top:50px;left: 30px;padding: 10px;z-index: 900;
+                background-color: #cccccc;
+
+            }
+
+            .btn:hover{
+               @apply(--menuitem-hover-color);
             }
         </style>
 
         <div>
-            <button type="button" class="btn btn-default btn-sm cus-btn" on-tap="openMenuWindow">
-                <span class="glyphicon glyphicon-plus"></span><span style="padding-left: 50px;">{{name}}</span>
+            <button  id="menuItem" type="button" class="btn btn-default btn-sm cus-btn" on-tap="handleOnTap" on-mouseover="handleMouseOver"
+            on-mouseout="handleOnMouseOut">
+                <span class$="{{icon}}"></span><span style="padding-left: 50px;">{{name}}</span>
+
             </button>
 
-            <template is="dom-if" if="{{hidden}}">
-               <!-- dynamically change the content-->
+            <div id="container">
+                <template is="dom-if" if="{{hidden}}">
+                    <!-- dynamically change the content-->
 
-                <div id="container" class="tmpContainer">
-                    <h3>{{name}}</h3>
-                    <content></content>
+                    <div class="tmpContainer">
+                        <h3>{{name}}</h3>
+                        <content></content>
 
-                    <button on-tap="windowClose">CLOSE</button>
-                </div>
-            </template>
+                        <button on-tap="windowClose">CLOSE</button>
+                    </div>
+                </template>
+            </div>
+
 
         </div>
+        <div style="height: 2px;">&nbsp;</div>
 
 
     </template>
     <script>
+
         Polymer({
             is:'menu-item',
             properties:{
@@ -55,39 +67,55 @@
                     value:false
                 }
             },
-            openMenuWindow:function(){
+            handleOnMouseOut:function(){
+                this.$.menuItem.style.position="static";
+               // this.$.menuItem.style.backgroundColor="white";
+                this.$.menuItem.style.color="black";
+
+            },
+            handleMouseOver:function(){
+                this.$.menuItem.style.position="relative";
+               // this.$.menuItem.style.backgroundColor="green";
+                this.$.menuItem.style.color="white";
+                this.$.menuItem.style.zIndex="99999";
+            },
+            handleOnTap:function(){
                 console.log("openMenuWindow");
                 this.hidden=true;
-
+                this.$.menuItem.style.position="relative";
+                this.icon="glyphicon glyphicon-minus";
                 console.log(this.id);
                 this.loadTemplate('partials/'+this.id+'.html',this.id);
+
+                //fire the event to rest the view-element
+                this.fire('width-reset',{width:"75%"});
 
 
             },
             windowClose:function(){
                 console.log("windowClose");
+                this.icon="glyphicon glyphicon-plus";
                 this.hidden=false;
+
             },
             ready:function(){
                 console.log(this.localName+" ready..."+this.width);
             },
             loadTemplate:function(path,element){
+
                 this.importHref(path,function(e){
                     var newElement = document.createElement(element);
-
-                  /*  if(newElement){
-                    console.log("found")
-                    }else{
-                        console.log("NOT found")
-                    }*/
-                    Polymer.dom(this).appendChild(newElement);
-
+                    var nodes =   Polymer.dom(this).childNodes;
+                    if(nodes==0 || nodes==1){
+                        Polymer.dom(this).appendChild(newElement);
+                    }
 
                 },function(err){
                     console.log(err);
                 });
             },
             attached:function(){
+                this.icon="glyphicon glyphicon-plus";
                 console.log(this.localName+" attached..."+this.width);
             }
         });

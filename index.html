@@ -4,30 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="pop-menu.html">
-    <link rel="import" href="pop-menu-label.html">
-    <link rel="import" href="menu-item.html">
+    <script rel="stylesheet" href="bower_components/jquery/dist/jquery.min.js"></script>
+    <script rel="stylesheet" href="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="import" href="inner-wrapper.html">
+
+
+    <link rel="import" href="themes/default-theme.html">
+   <!-- <link rel="import" href="bower_components/iron-flex-layout/classes/iron-flex-layout.html">-->
+
 </head>
 <body>
 <h1>PoP Menu</h1>
-<pop-menu>
-    <menu-label name="Title 1"></menu-label>
-    <menu-item name="Item 1" id="a-element"></menu-item>
-    <menu-item name="Item 2" id="b-element"></menu-item>
-    <menu-item name="Item 3"></menu-item>
-    <menu-item name="Item 4"></menu-item>
 
-    <br>
-    <menu-label name="Title 2"></menu-label>
-    <menu-item name="Item 1"></menu-item>
-    <menu-item name="Item 2"></menu-item>
-    <menu-item name="Item 3"></menu-item>
+<inner-wrapper></inner-wrapper>
 
-    <br>
-    <menu-label name="Title 3"></menu-label>
-    <menu-item name="Item 1"></menu-item>
-    <menu-item name="Item 2"></menu-item>
-    <menu-item name="Item 3"></menu-item>
-</pop-menu>
+
+
 </body>
 </html>

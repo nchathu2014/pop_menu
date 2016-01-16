@@ -1,0 +1,64 @@
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="title-element">
+    <template>
+        <style>
+            :host{
+                display: block;
+                padding: 10px;
+            }
+            .dash-line{
+                border-bottom: 1px dashed #000000;
+                padding: 10px 0;
+
+            }
+            .dash-horizontal{
+                border-right:1px dashed #000000;
+            }
+
+        </style>
+
+
+               <div class="container-fluid">
+                   <div class="row">
+                       <div class="col-lg-12 col-md-12" style="padding-left: 0;">
+                           Bread Crumb < Goes < Here
+                       </div>
+                   </div>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 dash-line dash-horizontal">
+                           <b> Title :</b>
+                        </div>
+                        <div class="col-lg-4 col-md-4 dash-line">
+                            <b>&nbsp;&nbsp;&nbsp;Date :</b>
+                        </div>
+                    </div>
+                   <div class="row">
+                       <div class="col-lg-12 col-md-12 dash-line">
+                           <b>Learning Objectives :</b>
+                       </div>
+                   </div>
+
+                   <div class="row">
+                       <div class="col-lg-12 col-md-12 dash-line">
+                           <b>Description :</b>
+                       </div>
+                   </div>
+               </div>
+
+
+    </template>
+    <script>
+        Polymer({
+            is:'title-element',
+            properties:{
+
+                /**
+                 * The align controls horizontal positioning left,middle,right. default = center
+                 */
+
+
+            }
+
+        });
+    </script>
+</dom-module>

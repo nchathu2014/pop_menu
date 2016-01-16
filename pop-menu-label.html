@@ -1,32 +1,61 @@
-<!--<script rel="stylesheet" href="bower_components/jquery/dist/jquery.min.js"></script>-->
 <link rel="import" href="../polymer/polymer.html">
-<!--<script rel="stylesheet" href="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">-->
-
 <dom-module id="menu-label">
     <template>
+
         <style>
             :host{
                 display: block;
+                @apply(--popmenu-label-theme);
             }
-
-
         </style>
 
-        <div>{{name}}</div>
+        <div style$="text-align: {{align}};
+                    text-transform:{{transform}};
+                    font-weight:{{bold}};
+                    margin:{{margin}};
+                    font-size:{{size}}px">{{name}}
+
+        </div>
 
     </template>
     <script>
         Polymer({
             is:'menu-label',
             properties:{
-                name:String
-            },
-            ready:function(){
-                console.log(this.localName+" ready..."+this.width);
-            },
-            attached:function(){
-                console.log(this.localName+" attached..."+this.width);
+                name:String,
+                /**
+                 * The align controls horizontal positioning left,middle,right. default = center
+                 */
+                align:{
+                    type:String,
+                    value:"center"
+                },
+                /**
+                 * The transform controls text appearance (uppercase,lowercase,capitalize).default is uppercase
+                 */
+                transform:{
+                    type:String,
+                    value:"uppercase"
+                },
+                /**
+                 * The bold controls text bold or not default true
+                 */
+                bold:{
+                    type:String,
+                    value:"bold"
+                },
+                margin:{
+                    type:String,
+                    value:"10px 0 10px 0" // default margin setting
+                },
+                /**
+                 * set the font size of the label
+                 */
+                size:{
+                    type:String
+                }
+
+
             }
         });
     </script>
