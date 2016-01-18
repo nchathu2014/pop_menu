@@ -19,20 +19,22 @@
 
             .tmpContainer{
                /* Refactor this EBP-CSS*/
-                width:300px;height: 580px;background-color: #999999;position: absolute;top:50px;left: 30px;padding: 10px;z-index: 900;
+                width:300px;height: 580px;background-color: #999999;position: absolute;top:50px;left: 40px;padding: 10px;z-index: 900;
                 background-color: #cccccc;
 
             }
 
-            .btn:hover{
+            .cus-btn:hover{
                @apply(--menuitem-hover-color);
+
+
             }
         </style>
 
         <div>
             <button  id="menuItem" type="button" class="btn btn-default btn-sm cus-btn" on-tap="handleOnTap" on-mouseover="handleMouseOver"
             on-mouseout="handleOnMouseOut">
-                <span class$="{{icon}}"></span><span style="padding-left: 50px;">{{name}}</span>
+                <span class$="{{icon}}" style$="color:{{iconColor}}"></span><span style="padding-left: 25px;">{{name}}</span>
 
             </button>
 
@@ -44,7 +46,7 @@
                         <h3>{{name}}</h3>
                         <content></content>
 
-                        <button on-tap="windowClose">CLOSE</button>
+                        <button  class="btn btn-primary btn-sm" on-tap="windowClose">CLOSE</button>
                     </div>
                 </template>
             </div>
@@ -60,38 +62,53 @@
         Polymer({
             is:'menu-item',
             properties:{
-                name:String,
-                id:String,//map to element name -> id=element name
+                name:{
+                    type:String
+
+                },
+                id:{
+                    type:String,//map to element name -> id=element name
+
+                },
                 hidden:{
                     type:Boolean,
                     value:false
+
                 }
             },
             handleOnMouseOut:function(){
                 this.$.menuItem.style.position="static";
+                this.iconColor="green";
                // this.$.menuItem.style.backgroundColor="white";
                 this.$.menuItem.style.color="black";
 
             },
             handleMouseOver:function(){
                 this.$.menuItem.style.position="relative";
+                this.iconColor="#ffffff";
                // this.$.menuItem.style.backgroundColor="green";
                 this.$.menuItem.style.color="white";
                 this.$.menuItem.style.zIndex="99999";
             },
             handleOnTap:function(){
-                console.log("openMenuWindow");
+
+                console.log(Polymer.dom(this.$.container).firstChild)
+
+                //this.$.container.style.hidden="false";
+              //var nodes = Polymer.dom(this.root).childNodes;
+                //console.log(nodes);
                 this.hidden=true;
                 this.$.menuItem.style.position="relative";
                 this.icon="glyphicon glyphicon-minus";
-                console.log(this.id);
+
                 this.loadTemplate('partials/'+this.id+'.html',this.id);
 
                 //fire the event to rest the view-element
-                this.fire('width-reset',{width:"75%"});
+                this.fire('width-reset',{width:"72%"});
 
 
             },
+
             windowClose:function(){
                 console.log("windowClose");
                 this.icon="glyphicon glyphicon-plus";

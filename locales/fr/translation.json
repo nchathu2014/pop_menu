@@ -1,0 +1,35 @@
+{
+
+  "labels":{
+    "mainTitle":"xxxxxxxxxx",
+    "titleOne":"xxxxxxxxxxxxxxxx",
+    "titleTwo":"xxxxxxxxxx",
+    "titleThree":"xxxxxxxxx"
+  },
+
+  "view":{
+    "studentView":"xxxxxxxxx",
+    "date":"xxxxxxx",
+    "title":"xxxxxxxxx",
+    "learningObj":"xxxxxxxxx",
+    "desc":"xxxxxxxxxxxxxx"
+
+  },
+
+  "menu":{
+    "title":"xxxxxxxxxx",
+    "date":"xxxxxxxxxxx",
+    "learningObj":"xxxxxxxxxx",
+    "desc":"xxxxxxxxxxxxx",
+    "addMedia":"xxxxxxxxxxxx",
+    "addQuestions":"xxxxxxxxxx",
+    "gradeOpt":"xxxxxxxxxxxxxxxxxx"
+
+  },
+  "buttons":{
+    "saveExit":"xxxxxxx",
+    "publish":"xxxxxxxxxx"
+  }
+
+
+}

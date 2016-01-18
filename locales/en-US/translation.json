@@ -1,8 +1,34 @@
 {
 
-    "titles":{
-        "title_1":"TITLE 1"
-    }
+    "labels":{
+        "mainTitle":"Build a Quiz/Poll",
+        "titleOne":"Quiz/Poll detail",
+        "titleTwo":"Quiz/Poll activity",
+        "titleThree":"Settings"
+    },
+
+    "view":{
+         "studentView":"Student View",
+         "date":"Date",
+         "title":"Title",
+         "learningObj":"Learning Objectives",
+         "desc":"Description"
+    },
+
+    "menu":{
+        "title":"Title",
+        "date":"Due Date",
+        "learningObj":"Learning Objectives",
+        "desc":"Description",
+        "addMedia":"Add Media",
+        "addQuestions":"Add Questions",
+        "gradeOpt":"Grading Options"
+
+    },
+  "buttons":{
+    "saveExit":"Save and Exit",
+    "publish":"Publish"
+  }
 
 
 }

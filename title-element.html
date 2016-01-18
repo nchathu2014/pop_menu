@@ -16,31 +16,34 @@
             }
 
         </style>
+        <i18n-component i18-n="{{i18n}}"></i18n-component>
 
 
                <div class="container-fluid">
                    <div class="row">
-                       <div class="col-lg-12 col-md-12" style="padding-left: 0;">
+                       <div class="col-lg-12 col-md-12" style="padding-left: 0;font-size: 12px;">
+
                            Bread Crumb < Goes < Here
+
                        </div>
                    </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-8 dash-line dash-horizontal">
-                           <b> Title :</b>
+                           <b>{{i18n.view.title}} : </b>
                         </div>
                         <div class="col-lg-4 col-md-4 dash-line">
-                            <b>&nbsp;&nbsp;&nbsp;Date :</b>
+                            <b>&nbsp;&nbsp;&nbsp;{{i18n.view.date}} :</b>
                         </div>
                     </div>
                    <div class="row">
                        <div class="col-lg-12 col-md-12 dash-line">
-                           <b>Learning Objectives :</b>
+                           <b>{{i18n.view.learningObj}} : </b>
                        </div>
                    </div>
 
                    <div class="row">
                        <div class="col-lg-12 col-md-12 dash-line">
-                           <b>Description :</b>
+                           <b>{{i18n.view.desc}} : </b>
                        </div>
                    </div>
                </div>
@@ -58,6 +61,7 @@
 
 
             }
+
 
         });
     </script>

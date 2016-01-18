@@ -1,0 +1,78 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+
+<dom-module id="i18n-component">
+    <template>
+        <style>
+            :host{
+                display: block;
+            }
+        </style>
+
+        <iron-ajax  id="i18nReq" handle-as="json"
+                   on-response="i18nResponse"
+                   on-error="i18nError">
+
+        </iron-ajax>
+
+    </template>
+    <script>
+        (function(){
+            'use strict'
+            Polymer({
+                is:"i18n-component",
+                properties:{
+                    i18N:{
+                        type:Object,
+                        notify:true
+                    },
+                },
+                ready:function(){
+                    this.langDetectionQueryParam();//priority 1 -> query param
+                },
+                langDetectionQueryParam:function(){
+                    var urlParams;
+                    var match,
+                            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+                            search = /([^&=]+)=?([^&]*)/g,
+                            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                            query  = window.location.search.substring(1);
+
+                    urlParams = {};
+                    while (match = search.exec(query))
+                        urlParams[decode(match[1])] = decode(match[2]);
+
+                    console.log("Query Params : "+urlParams["lang"]);
+                    //console.log(urlParams["lang"]);
+
+                    if(urlParams["lang"] == undefined){
+                        this.langDetectionAgent(); ////priority 2 -> browser language
+                    }else{
+                        this.langProcess(urlParams["lang"]);
+                    }
+                },
+                langDetectionAgent:function(){
+                    var agentLang = navigator.language || navigator.userLanguage;
+                    this.langProcess(agentLang);
+                    console.log("Browser Language : "+agentLang);
+                },
+                langProcess:function(lang){
+
+                    var path = "locales/"+lang+"/translation.json";
+                    this.$.i18nReq.url=path;
+                    this.$.i18nReq.generateRequest();
+                    console.log("Lang Process : "+path);
+                },
+                i18nResponse:function(res){
+                    this.i18N = res.detail.response;
+
+                },
+                i18nError:function(error){
+                    console.log("Error : "+error);
+
+                }
+            });
+
+        }());
+    </script>
+</dom-module>

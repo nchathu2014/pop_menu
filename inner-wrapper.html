@@ -5,6 +5,7 @@
 <link rel="import" href="view-element.html">
 <link rel="import" href="title-element.html">
 <link rel="import" href="dynamic-view-element.html">
+<link rel="import" href="i18n-component.html">
 
 <dom-module id="inner-wrapper">
     <template>
@@ -15,6 +16,7 @@
             }
 
         </style>
+        <i18n-component i18-n="{{i18n}}"></i18n-component>
 
         <script>
 
@@ -39,12 +41,12 @@
           <div class="row">
 
               <div class="pull-left" style="width: 25%;">
-                  <menu-label name="Build a Quiz/Poll" size="20" transform="capitalize" bold="normal"></menu-label>
+                  <menu-label name="{{i18n.labels.mainTitle}}" size="20" transform="capitalize" bold="normal"></menu-label>
               </div>
               <div class="pull-left" style="width: 75%;">
 
-                  <button class="btn btn-primary pull-right">Publish</button><span>&nbsp;&nbsp;&nbsp;</span>
-                  <button class="btn btn-primary pull-right">Save and Exit</button>
+                  <button class="btn btn-primary pull-right">{{i18n.buttons.publish}}</button>
+                  <button class="btn btn-primary pull-right">{{i18n.buttons.saveExit}}</button>
               </div>
 
           </div>
@@ -54,31 +56,31 @@
               <div class="pull-left" style="width: 25%;">
                   <pop-menu>
 
-                      <menu-label name="Title 1"></menu-label>
+                      <menu-label name="{{i18n.labels.titleOne}}"></menu-label>
 
-                      <menu-item name="Item 1" id="a-element"></menu-item>
-                      <menu-item name="Item 2" id="b-element"></menu-item>
-                      <menu-item name="Item 3"></menu-item>
-                      <menu-item name="Item 4"></menu-item>
-
-                      <br>
-                      <menu-label name="Title 2"></menu-label>
-
-                      <menu-item name="Item 1"></menu-item>
-                      <menu-item name="Item 2"></menu-item>
-
+                      <menu-item name="{{i18n.menu.title}}*" id="a-element"></menu-item>
+                      <menu-item name="{{i18n.menu.date}}*" id="b-element"></menu-item>
+                      <menu-item name="{{i18n.menu.learningObj}}"></menu-item>
+                      <menu-item name="{{i18n.menu.desc}}"></menu-item>
 
                       <br>
-                      <menu-label name="Title 3"></menu-label>
+                      <menu-label name="{{i18n.labels.titleTwo}}"></menu-label>
 
-                      <menu-item name="Item 1"></menu-item>
-                      <menu-item name="Item 2"></menu-item>
+                      <menu-item name="{{i18n.menu.addMedia}}"></menu-item>
+                      <menu-item name="{{i18n.menu.addQuestions}}"></menu-item>
+
+
+                      <br>
+                      <menu-label name="{{i18n.labels.titleThree}}"></menu-label>
+
+                      <menu-item name="{{i18n.menu.gradeOpt}}"></menu-item>
+
 
                   </pop-menu>
               </div>
               <div class="pull-right my-div"  style$="position: {{position}};right: {{right}};width: {{width}}">
 
-                  <view-element title="Student View"></view-element>
+                  <view-element title="{{i18n.view.studentView}}"></view-element>
               </div>
 
           </div>
@@ -165,11 +167,11 @@
                 },
                 right:{
                     type:String,
-                    value:"0"
+                    value:"20px"
                 },
                 width:{
                     type:String,
-                    value:"75%"
+                    value:"72%"
                 }
                 /**
                  * The align controls horizontal positioning left,middle,right. default = center
