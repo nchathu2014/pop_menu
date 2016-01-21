@@ -17,10 +17,19 @@
                 color: green;
             }
 
+            .shadow {
+
+            }
+
+
             .tmpContainer{
                /* Refactor this EBP-CSS*/
-                width:300px;height: 580px;background-color: #999999;position: absolute;top:50px;left: 40px;padding: 10px;z-index: 900;
+                width:17%;height: 480px;background-color: #999999;position: absolute;top:50px;left: 40px;padding: 10px;z-index: 900;
                 background-color: #cccccc;
+
+                -webkit-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
+                box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
 
             }
 
@@ -38,7 +47,7 @@
 
             </button>
 
-            <div id="container">
+            <div id="container" class="shadow">
                 <template is="dom-if" if="{{hidden}}">
                     <!-- dynamically change the content-->
 
@@ -74,7 +83,8 @@
                     type:Boolean,
                     value:false
 
-                }
+                },
+                leftPanel:String
             },
             handleOnMouseOut:function(){
                 this.$.menuItem.style.position="static";
@@ -99,12 +109,12 @@
                 //console.log(nodes);
                 this.hidden=true;
                 this.$.menuItem.style.position="relative";
-                this.icon="glyphicon glyphicon-minus";
+                this.icon="glyphicon glyphicon-pencil";
 
                 this.loadTemplate('partials/'+this.id+'.html',this.id);
 
                 //fire the event to rest the view-element
-                this.fire('width-reset',{width:"72%"});
+                this.fire('width-reset',{width:"78%"});
 
 
             },

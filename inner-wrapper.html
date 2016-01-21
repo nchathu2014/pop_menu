@@ -18,42 +18,25 @@
         </style>
         <i18n-component i18-n="{{i18n}}"></i18n-component>
 
-        <script>
 
-            document.querySelector('inner-wrapper').addEventListener('width-changed', function (e) {
-
-                this.width=e.detail.width;
-
-               console.log("Event capture : "+ this.width);
-            })
-
-            document.querySelector('inner-wrapper').addEventListener('width-reset', function (e) {
-
-                this.width=e.detail.width;
-               // this.toggleClick=e.detail.toggleClick;
-
-                console.log("Event capture : "+ this.width+" -toggle : "+ this.toggleClick);
-            })
-        </script>
 
       <div class="container-fluid">
 
           <div class="row">
 
-              <div class="pull-left" style="width: 25%;">
-                  <menu-label name="{{i18n.labels.mainTitle}}" size="20" transform="capitalize" bold="normal"></menu-label>
+              <div class="pull-left" style="width: 20%;">
+                  <menu-label name="{{i18n.labels.mainTitle}}" size="25" transform="capitalize" bold="normal" align="left"></menu-label>
               </div>
-              <div class="pull-left" style="width: 75%;">
+              <div class="pull-right" style="width: 80%;">
 
                   <button class="btn btn-primary pull-right">{{i18n.buttons.publish}}</button>
                   <button class="btn btn-primary pull-right">{{i18n.buttons.saveExit}}</button>
               </div>
 
           </div>
-
           <div class="row">
 
-              <div class="pull-left" style="width: 25%;">
+              <div class="pull-left" style="width: 20%;">
                   <pop-menu>
 
                       <menu-label name="{{i18n.labels.titleOne}}"></menu-label>
@@ -87,75 +70,27 @@
       </div>
 
 
-      <!--  <div class="horizontal layout" style="height:100%">
-            <div class="flex-1">
-                <pop-menu>
-
-                    <menu-label name="Title 1"></menu-label>
-
-                    <menu-item name="Item 1" id="a-element"></menu-item>
-                    <menu-item name="Item 2" id="b-element"></menu-item>
-                    <menu-item name="Item 3"></menu-item>
-                    <menu-item name="Item 4"></menu-item>
-
-                    <br>
-                    <menu-label name="Title 2" align="center"></menu-label>
-
-                    <menu-item name="Item 1"></menu-item>
-                    <menu-item name="Item 2"></menu-item>
-
-
-                    <br>
-                    <menu-label name="Title 3" align="center"></menu-label>
-
-                    <menu-item name="Item 1"></menu-item>
-                    <menu-item name="Item 2"></menu-item>
-
-                </pop-menu>
-            </div>
-            <div class="flex-4">
-                <view-element></view-element>
-            </div>
-        </div>-->
-
-        <!--<div class="container-fluid">
-
-            <div class="row">
-                <div class="pull-left" style="width: 25%;">
-                    <pop-menu>
-
-                        <menu-label name="Title 1"></menu-label>
-
-                        <menu-item name="Item 1" id="a-element"></menu-item>
-                        <menu-item name="Item 2" id="b-element"></menu-item>
-                        <menu-item name="Item 3"></menu-item>
-                        <menu-item name="Item 4"></menu-item>
-
-                        <br>
-                        <menu-label name="Title 2" align="center"></menu-label>
-
-                        <menu-item name="Item 1"></menu-item>
-                        <menu-item name="Item 2"></menu-item>
-
-
-                        <br>
-                        <menu-label name="Title 3" align="center"></menu-label>
-
-                        <menu-item name="Item 1"></menu-item>
-                        <menu-item name="Item 2"></menu-item>
-
-                    </pop-menu>
-                </div>
-
-                <div class="pull-right" style="width: 75%;">
-                    <view-element></view-element>
-                </div>
-
-            </div>
-
-        </div>-->
-
     </template>
+    <script>
+
+
+            document.querySelector('inner-wrapper').addEventListener('width-changed', function (e) {
+
+                this.width=e.detail.width;
+
+                console.log("Event capture : "+ this.width);
+            });
+
+
+
+        document.querySelector('inner-wrapper').addEventListener('width-reset', function (e) {
+
+            this.width=e.detail.width;
+            // this.toggleClick=e.detail.toggleClick;
+
+            console.log("Event capture : "+ this.width+" -toggle : "+ this.toggleClick);
+        })
+    </script>
     <script>
         Polymer({
             is:'inner-wrapper',
@@ -171,7 +106,7 @@
                 },
                 width:{
                     type:String,
-                    value:"72%"
+                    value:"78%"
                 }
                 /**
                  * The align controls horizontal positioning left,middle,right. default = center
