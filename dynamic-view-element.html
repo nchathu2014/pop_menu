@@ -5,16 +5,25 @@
             :host{
                 display: block;
                 padding: 10px;
-                background-color: #666666;
+                height: auto;
+
 
 
             }
         </style>
         <i18n-component i18-n="{{i18n}}"></i18n-component>
-{{i18n}}
-        <div class="dynamicElementWrapper">
-             <span>I am dynamic area</span>
-            <content></content>
+<!--{{i18n}}-->
+        <div class="dynamicElementWrapper" style="padding: 20px;">
+
+
+            <div class="row">
+                <div class="pull-left" style="width: 45%">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/rHxxLYzJ8Sw" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="pull-right" style="background-color: #f1f1f1;width: 55%;height: 315px;">
+                    Test area
+                </div>
+            </div>
         </div>
 
     </template>

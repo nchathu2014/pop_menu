@@ -5,7 +5,7 @@
             :host{
                 display: block;
                 background-color: #ffffff;
-                height: 480px;
+                height:auto;
             }
 
             .view-title{
@@ -15,7 +15,7 @@
 
             .mainWrapper{
                /* border:5px solid red;*/
-                height: 480px;
+                height: auto;
 
 
             }
@@ -40,7 +40,7 @@
        <div class="mainWrapper shadow">
            <!--<div class="view-title" on-tap="handleTap">-->
                <div class="view-title">
-              <span style="border-right: 1px dashed #cccccc;padding: 13px 0">
+              <span style="border-right: 1px dotted #cccccc;padding: 13px 7px">
                   <img src="img/icon-expand.svg"  on-tap="handleTap" class="expandImage" alt="expand icon" style$="transform: {{rotate}}" >
               </span>
                &nbsp;&nbsp;&nbsp;&nbsp;{{title}}
@@ -79,11 +79,6 @@
                  */
                 title:String,
 
-
-
-
-
-
             }
            /* observers: [
                 'changedWidth(toggleClick)'
@@ -91,8 +86,14 @@
 
             changedWidth:function(oldValue,newValue){
 
+
+                console.log("DOUCMNT WIDTH : "+$(document).width());
+                var documentWidth=$(document).width();
+                var margin=80;
+
+                var applyWidth=documentWidth-margin+"px";
                 if(this.toggleClick){
-                    this.width="95%";
+                    this.width=applyWidth;
                     this.rotate="rotate(180deg)";
                 }else{
                     this.width="78%";

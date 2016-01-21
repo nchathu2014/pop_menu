@@ -10,6 +10,7 @@
             .cus-btn{
                 text-align: left;
                 border-radius: 0;
+                border: none;
                 width: 100%;
                 padding: 8px;
             }
@@ -17,27 +18,30 @@
                 color: green;
             }
 
-            .shadow {
-
-            }
-
 
             .tmpContainer{
                /* Refactor this EBP-CSS*/
-                width:17%;height: 480px;background-color: #999999;position: absolute;top:50px;left: 40px;padding: 10px;z-index: 900;
-                background-color: #cccccc;
+               height: 480px;background-color: #f2f2f2;position: absolute;top:50px;left: 50px;padding: 10px;z-index: 900;
+
 
                 -webkit-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
                 -moz-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
                 box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
 
+
+
             }
+
+
+
+
 
             .cus-btn:hover{
                @apply(--menuitem-hover-color);
 
 
             }
+
         </style>
 
         <div>
@@ -99,22 +103,29 @@
                // this.$.menuItem.style.backgroundColor="green";
                 this.$.menuItem.style.color="white";
                 this.$.menuItem.style.zIndex="99999";
+
+
             },
             handleOnTap:function(){
 
-                console.log(Polymer.dom(this.$.container).firstChild)
-
-                //this.$.container.style.hidden="false";
-              //var nodes = Polymer.dom(this.root).childNodes;
-                //console.log(nodes);
                 this.hidden=true;
+                //$('#container').css('display','block');
+
+                var width = $('.cus-btn').width();
+
+
+                Polymer.dom(this).flush();
+                $('.tmpContainer').css('width',width);
+
+                console.log("WIDTH : "+width);
+               
                 this.$.menuItem.style.position="relative";
                 this.icon="glyphicon glyphicon-pencil";
 
                 this.loadTemplate('partials/'+this.id+'.html',this.id);
 
                 //fire the event to rest the view-element
-                this.fire('width-reset',{width:"78%"});
+                 this.fire('width-reset',{width:"78%"});
 
 
             },
@@ -127,6 +138,7 @@
             },
             ready:function(){
                 console.log(this.localName+" ready..."+this.width);
+                console.log("WIDTH : "+$('.btn').width());
             },
             loadTemplate:function(path,element){
 
