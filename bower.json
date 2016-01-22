@@ -23,7 +23,6 @@
     "bootstrap": "~3.3.6",
     "polymer-themes": "~1.0.1",
     "i18n-component": "https://github.com/nchathu2014/i18n-component.git",
-    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.2.2",
-    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#~1.0.6"
+    
   }
 }
