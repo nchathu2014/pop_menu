@@ -51,17 +51,19 @@
 
        <!-- <iron-signals on-iron-signal-menuwindow="handleMenuWindow"></iron-signals>-->
         <div>
-            <button  id="menuItem" type="button" class="btn btn-default btn-sm cus-btn" on-tap="handleOnTap" on-mouseover="handleMouseOver"
+            <button  id="menuItem" type="button" class="btn btn-default btn-sm cus-btn" on-tap="handleOnTap1" on-mouseover="handleMouseOver"
             on-mouseout="handleOnMouseOut">
                 <span class$="{{icon}}" style$="color:{{iconColor}}"></span><span style="padding-left: 25px;">{{name}}</span>
 
             </button>
 
             <div id="container" class="shadow">
-                <template is="dom-if" if="{{hidden}}" class="tmpWindow">
+                <template is="dom-if" if="{{hidden}}" class="tmpWindow" id="tmpWindow">
                     <!-- dynamically change the content-->
 
+
                     <div class="tmpContainer">
+                        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true" on-tap="windowClose">×</button>
                         <h4 class="text-center">{{name}} <span class="glyphicon glyphicon-info-sign"></span></h4>
                         <content></content>
 
@@ -77,7 +79,7 @@
 
     </template>
     <script>
-        var gElement="wwdwd";
+        var gElement=[];
         Polymer({
             is:'menu-item',
             properties:{
@@ -95,8 +97,10 @@
 
                 },
                 leftPanel:String,
-                newElement:String
+                newElement:String,
+                toggleClick:Boolean
             },
+
             handleOnMouseOut:function(){
                 this.$.menuItem.style.position="static";
                 this.iconColor="green";
@@ -112,25 +116,28 @@
                 this.$.menuItem.style.zIndex="99999";
 
 
+
             },
             handleOnTap:function(){
-console.log("bbbbbbbbbbbbbbbb"+$('#tmpWindow'));
 
-                $('.tmpWindow').siblings().hide();
-               // $('#container').siblings().hide();
-               // $(this).siblings().hide();
+             //  $('.tmpWindow').siblings().hide('slide', {direction: 'left'}, 1000);
+                console.log(this.id);
+                gElement[0]=this.id
+
+
+                console.log("In the array : "+gElement[0]);
 
                 this.hidden=true;
-                //$('#container').css('display','block');
 
-                var width = $('.cus-btn').width();
+
+             var width = $('.cus-btn').width();
 
 
                 Polymer.dom(this).flush();
                 $('.tmpContainer').css('width',width);
 
-                console.log("WIDTH : "+width);
-               
+               /* console.log("WIDTH : "+width);*/
+
                 this.$.menuItem.style.position="relative";
                 this.icon="glyphicon glyphicon-pencil";
 
@@ -138,19 +145,20 @@ console.log("bbbbbbbbbbbbbbbb"+$('#tmpWindow'));
 
                 //fire the event to rest the view-element
                  this.fire('width-reset',{width:"78%"});
-                 this.fire('iron-signal', {name: "menuwindow", data: { "window_name" : this.id}});
+               /*  this.fire('iron-signal', {name: "menuwindow", data: { "status" : "false","id":this.id}});*/
+
 
             },
 
             windowClose:function(){
-                console.log("windowClose");
+               /* console.log("windowClose");*/
                 this.icon="glyphicon glyphicon-plus";
                 this.hidden=false;
 
             },
             ready:function(){
-                console.log(this.localName+" ready..."+this.width);
-                console.log("WIDTH : "+$('.btn').width());
+              /*  console.log(this.localName+" ready..."+this.width);
+                console.log("WIDTH : "+$('.btn').width());*/
             },
             loadTemplate:function(path,element){
 
@@ -167,19 +175,18 @@ console.log("bbbbbbbbbbbbbbbb"+$('#tmpWindow'));
                     console.log(err);
                 });
             },
-            handleMenuWindow:function(data) {
-               console.log("handleMenuWindow : "+data.detail.window_name+gElement);
+          /*  handleMenuWindow:function(data) {
 
-            /*    if(data.detail.window_name==gElement){
-                    this.hidden=false;
-                }
-*/
+               console.log("handleMenuWindow : "+data.detail.status);
+                console.log("global element : "+gElement);
+                console.log("handleMenuWindow : "+data.detail.id);
 
-            },
+            },*/
             attached:function(){
                 this.icon="glyphicon glyphicon-plus";
-                console.log(this.localName+" attached..."+this.width);
+               /* console.log(this.localName+" attached..."+this.width);*/
             }
         });
     </script>
+
 </dom-module>

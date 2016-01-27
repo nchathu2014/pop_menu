@@ -1,7 +1,6 @@
 <link rel="import" href="../../polymer/polymer.html"/>
-<!--<script src="../../jquery/dist/jquery.min.js"></script>
-<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="../../bootstrap/dist/css/bootstrap.min.css">-->
+
+
 
 
 <dom-module id="a-element">
@@ -10,21 +9,73 @@
             :host{
                 display: block;
             }
+            .cus-calander{
+                background-color: #ffffff;
+
+            }
+
+            #srtDate,#endDate{
+                border-right: none;
+            }
         </style>
+
+           <i18n-component i18-n="{{i18n}}"></i18n-component>
+
+            <h4 class="text-center">{{i18n.menu.title}} <span class="glyphicon glyphicon-info-sign"></span></h4>
+
+        <input type='text' on-change='changed' value='{{value}}'/>
+
 
 
         <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="comment" style="resize: none;"></textarea>
+            <label for="qpTitle">Title*</label>
+            <input type="text" class="form-control" id="qpTitle" placeholder="Title" value="{{title::input}}"  on-change="handleOnChange">
+            {{title}}
+        </div>
+
+        <div class="form-group">
+            <label for="srtDate">Start date*</label>
+            <div class="input-group date" >
+                <input type="text" class="form-control" id="srtDate"/>	<span class="input-group-addon cus-calander"><span class="glyphicon-calendar glyphicon"></span></span>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="endDate">Due date*</label>
+            <div class="input-group date" >
+                <input type="text" class="form-control" id="endDate"/>	<span class="input-group-addon cus-calander"><span class="glyphicon-calendar glyphicon"></span></span>
+            </div>
         </div>
 
     </template>
     <!--imperative part of the polymer component-->
+  <!--  <script>
+        $('#datetimepicker6').datepicker();
+
+    </script>-->
     <script>
         (function(){
             'use strict'
+
             Polymer({
-                is:"a-element"
+                is:"a-element",
+                properties:{
+                    title:{
+                        type:String,
+                        value:"Test data for title"
+                    }
+                },
+                handleOnChange:function(){
+                    console.log("handleOnChange"+this.title);
+                    this.fire('on-change',{title:this.title});
+                },
+                ready:function(){
+                   console.log(this.localName+" ready");
+
+
+
+                }
             });
         }());
     </script>

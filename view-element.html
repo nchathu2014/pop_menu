@@ -61,8 +61,8 @@
 
 
 
-
     </template>
+
     <script>
         Polymer({
             is:'view-element',
@@ -87,6 +87,28 @@
             changedWidth:function(oldValue,newValue){
 
 
+               /* console.log("DOUCMNT WIDTH : "+$(document).width());*/
+                var documentWidth=$(document).width();
+                var margin=80;
+
+                var applyWidth=documentWidth-margin+"px";
+                if(this.toggleClick){
+                    this.width=applyWidth;
+                    this.rotate="rotate(180deg)";
+                }else{
+                    this.width="78%";
+                    this.rotate="rotate(0deg)";
+                }
+               /* console.log("Observer Old Value : "+oldValue);
+                console.log("Observer New Value : "+newValue);*/
+
+                this.fire('width-changed',{width:this.width});
+            },
+            handleTap:function(){
+               // $('.tmpWindow').siblings().hide();
+
+                $(".test").hide();
+
                 console.log("DOUCMNT WIDTH : "+$(document).width());
                 var documentWidth=$(document).width();
                 var margin=80;
@@ -99,14 +121,13 @@
                     this.width="78%";
                     this.rotate="rotate(0deg)";
                 }
-                console.log("Observer Old Value : "+oldValue);
-                console.log("Observer New Value : "+newValue);
+              //  console.log("Observer Old Value : "+oldValue);
+                //console.log("Observer New Value : "+newValue);
 
                 this.fire('width-changed',{width:this.width});
-            },
-            handleTap:function(){
+
                 this.toggleClick=!this.toggleClick;
-                console.log("Click Status : "+this.toggleClick);
+                /*console.log("Click Status : "+this.toggleClick);*/
             }
 
 

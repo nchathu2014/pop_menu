@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+
 <dom-module id="title-element">
     <template>
         <style>
@@ -25,14 +26,15 @@
 
                            Bread Crumb < Goes < Here
 
+
                        </div>
                    </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-8 dash-line dash-horizontal">
-                           <b>{{i18n.view.title}} : </b>
+                           <b>{{i18n.view.title}} :</b>
                         </div>
                         <div class="col-lg-4 col-md-4 dash-line">
-                            <b>&nbsp;&nbsp;&nbsp;{{i18n.view.date}} :</b>
+                            <b>&nbsp;&nbsp;&nbsp;{{i18n.view.date}} :{{title}}</b>
                         </div>
                     </div>
                    <div class="row">
@@ -49,20 +51,32 @@
                </div>
 
 
+        <script>
+            var el = document.querySelector("title-element").addEventListener('title-event',function(e){
+                console.log("element : "+e)
+            });
+
+        </script>
     </template>
+
     <script>
-        Polymer({
-            is:'title-element',
-            properties:{
+        (function(){
+            'use strict'
+            Polymer({
+                is:'title-element',
+                properties:{
 
-                /**
-                 * The align controls horizontal positioning left,middle,right. default = center
-                 */
+                    title:String
+                },
+                ready:function(){
+
+                    console.log(this.localName+" ready...");
+
+                }
 
 
-            }
-
-
-        });
+            });
+        }());
     </script>
+
 </dom-module>

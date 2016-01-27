@@ -42,7 +42,7 @@
                     while (match = search.exec(query))
                         urlParams[decode(match[1])] = decode(match[2]);
 
-                    console.log("Query Params : "+urlParams["lang"]);
+                   /* console.log("Query Params : "+urlParams["lang"]);*/
                     //console.log(urlParams["lang"]);
 
                     if(urlParams["lang"] == undefined){
@@ -54,14 +54,14 @@
                 langDetectionAgent:function(){
                     var agentLang = navigator.language || navigator.userLanguage;
                     this.langProcess(agentLang);
-                    console.log("Browser Language : "+agentLang);
+                    /*console.log("Browser Language : "+agentLang);*/
                 },
                 langProcess:function(lang){
 
                     var path = "locales/"+lang+"/translation.json";
                     this.$.i18nReq.url=path;
                     this.$.i18nReq.generateRequest();
-                    console.log("Lang Process : "+path);
+                   /* console.log("Lang Process : "+path);*/
                 },
                 i18nResponse:function(res){
                     this.i18N = res.detail.response;
@@ -69,7 +69,6 @@
                 },
                 i18nError:function(error){
                     console.log("Error : "+error);
-
                 }
             });
 

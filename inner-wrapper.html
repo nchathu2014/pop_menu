@@ -4,9 +4,13 @@
 <link rel="import" href="pop-menu-label.html">
 <link rel="import" href="menu-item.html">
 <link rel="import" href="view-element.html">
-<link rel="import" href="title-element.html">
+
 <link rel="import" href="dynamic-view-element.html">
 <link rel="import" href="i18n-component.html">
+<link rel="import" href="partials/a-element.html">
+<link rel="import" href="title-element.html">
+
+<link rel="import" href="../paper-input/paper-input.html">
 
 <dom-module id="inner-wrapper">
     <template>
@@ -14,6 +18,16 @@
             :host{
                 display: block;
                 @apply(--inner-wrapper-theme);
+            }
+
+            .test{
+                /* Refactor this EBP-CSS*/
+                height: 480px;background-color: #f2f2f2;position: absolute;top:55px;left: 50px;padding: 10px;z-index: 900;
+
+
+                -webkit-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
+                box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.75);
             }
 
         </style>
@@ -42,8 +56,8 @@
 
                       <menu-label name="{{i18n.labels.titleOne}}"></menu-label>
 
-                      <menu-item name="{{i18n.menu.title}}*" id="a-element"></menu-item>
-                      <menu-item name="{{i18n.menu.date}}*" id="b-element"></menu-item>
+                      <menu-item name="{{i18n.menu.title}}*" id="a-element" on-tap="openWindow"></menu-item>
+                      <menu-item name="{{i18n.menu.date}}*" id="b-element" on-tap="openWindow"></menu-item>
                       <menu-item name="{{i18n.menu.learningObj}}"></menu-item>
                       <menu-item name="{{i18n.menu.desc}}"></menu-item>
 
@@ -61,10 +75,19 @@
 
 
                   </pop-menu>
+
+                  <div class="test" style="display: none;">
+                      <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true" on-tap="closeWindow">×</button>
+
+                      <content></content>
+
+                      <button  class="btn btn-primary btn-sm" on-tap="closeWindow">CLOSE</button>
+                  </div>
+
               </div>
               <div class="pull-right my-div"  style$="position: {{position}};right: {{right}};width: {{width}}">
 
-                  <view-element title="{{i18n.view.studentView}}"></view-element>
+                  <view-element title="{{i18n.view.studentView}}" toggle-click="{{toggleClick}}"></view-element>
               </div>
 
           </div>
@@ -73,6 +96,8 @@
 
     </template>
     <script>
+
+
 
 
             document.querySelector('inner-wrapper').addEventListener('width-changed', function (e) {
@@ -93,6 +118,7 @@
         })
     </script>
     <script>
+
         Polymer({
             is:'inner-wrapper',
             properties:{
@@ -108,14 +134,70 @@
                 width:{
                     type:String,
                     value:"78%"
+                },
+                hidden:{
+                    type:String,
+                    value:true
                 }
+
                 /**
                  * The align controls horizontal positioning left,middle,right. default = center
                  */
 
 
+            },
+            openWindow:function(e){
+
+                console.log("ddd");
+
+                this.width="78%";
+               this.toggleClick=false;
+
+                var width = $('.cus-btn').width();
+
+
+                Polymer.dom(this).flush();
+                $('.test').css('width',width);
+
+                $(".test").hide().show( "slide", {direction: "right" }, 500 );
+                var element = Polymer.dom(e).localTarget.id;
+
+               // $('.test'). toggle( "slide");
+                this.loadTemplate('partials/'+element+'.html',element);
+                /*this.hidden=false
+                this.loadTemplate('partials/'+'a-element'+'.html','a-element');*/
+            },
+            closeWindow:function(){
+               // this.hidden=true
+                $(".test").hide( "slide", {direction: "right" }, 500 );
+            },
+            loadTemplate:function(path,element){
+
+
+
+
+                this.importHref(path,function(e){
+                    Polymer.dom(this).textContent="";
+
+
+
+                    var newElement = document.createElement(element);
+                    Polymer.dom(this).appendChild(newElement);
+                    console.log("newElement : "+newElement);
+
+                    var nodes =   Polymer.dom(this).childNodes.length;
+                    console.log("NODESS : "+nodes);
+                    /*if(nodes>2){
+                        /!*Polymer.dom(this).flush()*!/
+                    }*/
+
+                },function(err){
+                    console.log(err);
+                });
             }
 
         });
     </script>
+
+
 </dom-module>
